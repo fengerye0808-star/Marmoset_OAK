@@ -1,0 +1,19 @@
+# Marmoset facial-keypoint tool — RUNTIME dependencies (inference only, no training).
+# Target: Python 3.12.
+#
+# IMPORTANT: install torch FIRST, separately, with the CUDA build that matches
+# the new PC's NVIDIA driver (see SETUP.md) — do NOT let pip pull a default torch
+# (that gives a CPU-only build on Windows). Then:  pip install -r requirements.txt
+
+deeplabcut-live==1.1.0     # DLCLive inference engine (NOT full deeplabcut; pulls pandas/scipy/tables/…)
+depthai>=3.0.0             # OAK-D camera driver — only needed for live  --source oak
+opencv-python>=4.9         # GUI window (cv2.imshow); coexists with the headless build dlclive pulls
+numpy<2                    # matches the env the model was validated in
+
+# ---- analysis extras (ONLY for the scripts in analysis/, not the live tool) ----
+# Uncomment if you also want to run the fUSi / airpuff / expression analysis scripts:
+# h5py                     # read MonkeyLogic .mat event times
+# nibabel                  # read fUSi .nii.gz brain volumes
+# scikit-learn             # the classifiers
+# matplotlib               # figures
+# (pandas + scipy already come in via deeplabcut-live)
